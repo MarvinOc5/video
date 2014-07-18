@@ -6,7 +6,7 @@
 		
 		function __construct(){
 			
-			parent::construct();		
+			parent::__construct();		
 		}
 		
 		
