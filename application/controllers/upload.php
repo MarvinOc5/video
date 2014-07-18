@@ -6,6 +6,7 @@ class Upload extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
 	}
 
 	function index()
@@ -20,15 +21,26 @@ class Upload extends CI_Controller {
 
 		$this->load->library('upload', $config);
 
+	if($this->_submit_validate()===FALSE){
+		
+		$this->load->view('upload_form', $error);
+	}
+	else{
+		
 		if ( ! $this->upload->do_upload())
 		{
 			$error = array('error' => $this->upload->display_errors());
 			
 		}	
-			$this->load->view('upload_form', $error);
 			$data = array('upload_data' => $this->upload->data());
+	}
+	}
+	
+	
+	private function _submit_validate(){
 			
-			$this->load->view('upload_success', $data);
+	return $this->form_validation->run();
+			
 	}
 }
 ?>
