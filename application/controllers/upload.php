@@ -1,45 +1,40 @@
 <?php
 
-class Upload extends CI_Controller {
-
-	function __construct()
+class Upload extends Controller {
+	
+	function Upload()
 	{
-		parent::__construct();
+		parent::Controller();
 		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
-		$config['upload_path'] = './uploads/';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$this->load->library('upload', $config);
 	}
-
+	
 	function index()
-	{
+	{	
 		$this->load->view('upload_form', array('error' => ' ' ));
 	}
 
 	function do_upload()
 	{
-
-	if($this->_submit_validate()===FALSE){
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']	= '100';
+		$config['max_width']  = '1024';
+		$config['max_height']  = '768';
 		
-		$this->load->view('upload_form', $error);
-	}
-	else{
-		
+		$this->load->library('upload', $config);
+	
 		if ( ! $this->upload->do_upload())
 		{
 			$error = array('error' => $this->upload->display_errors());
 			
+			$this->load->view('upload_form', $error);
 		}	
+		else
+		{
 			$data = array('upload_data' => $this->upload->data());
-	}
-	}
-	
-	
-	private function _submit_validate(){
 			
-	return $this->form_validation->run();
-			
-	}
+			$this->load->view('upload_success', $data);
+		}
+	}	
 }
 ?>
