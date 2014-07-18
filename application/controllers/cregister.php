@@ -10,14 +10,6 @@
 			$this->load->library('form_validation');
 			$this->load->library('pagination');	
 			$this->load->model('muser','m_user');
-			$this->load->library('session');
-			
-			$config['upload_path'] = './assets/';
-			$config['allowed_types'] = 'gif|jpg|png';
-			
-			$this->load->library('upload', $config);	
-			
-		
 		}
 		
 		
@@ -37,17 +29,6 @@
 			else{ 
 			
 			// 2. get the inputs	
-			
-				if(!$this->upload->do_upload('image')){
-					$this->upload->display_errors();
-					exit();
-				}
-					$image = $this->upload->data();
-				
-				if ($image['file_name']){
-				
-					$data['image'] = $image['file_name'];
-				}
 				
 				$data['username'] = $this->input->post('username');
 				$data['password'] = $this->input->post('password');
