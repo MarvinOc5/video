@@ -16,7 +16,7 @@ class Upload extends CI_Controller {
 	function do_upload()
 	{
 		$config['upload_path'] = './uploads/';
-		$config['allowed_types'] = '*';
+		$config['allowed_types'] = 'gif|jpg|png';
 
 		$this->load->library('upload', $config);
 
