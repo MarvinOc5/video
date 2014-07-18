@@ -40,7 +40,7 @@
 			
 				if(!$this->upload->do_upload('image')){
 					$this->upload->display_errors();
-					exit();
+					
 				}
 					$image = $this->upload->data();
 				
