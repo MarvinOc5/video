@@ -20,7 +20,7 @@ class Email extends CI_Controller {
 
         $this->email->initialize($config);
 
-        $this->email->from('Codeigniter@sample.ccom', 'Your Name');
+        $this->email->from('marvingiffordoclima@yahoo.com', 'Marvin Gifford Oclima');
         $this->email->to('marvinjsow@gmail.com');
 
         $this->email->subject('This is a html email');
