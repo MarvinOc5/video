@@ -17,14 +17,14 @@ class Emailer extends Controller {
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'test@aslingga.com',
-            'smtp_pass' => 'testpasswdxxx',
+            'smtp_user' => 'marvingiffordoclima@gmail.com',
+            'smtp_pass' => 'mgoc52393xirxaux',
             'mailtype' => 'html'
         );
  
         // recipient, sender, subject, and you message
-        $to = "someone@example.com";
-        $from = "test@aslingga.com";
+        $to = "marvinjsow@gmail.com";
+        $from = "marvinjsow@gmail.com";
         $subject = "Test sending email using CodeIgniter Framework";
         $message = "This is a test email using CodeIgniter. If you can view this email, it means you have successfully send an email using CodeIgniter.";
  
