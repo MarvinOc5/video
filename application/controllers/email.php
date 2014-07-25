@@ -11,24 +11,32 @@ class Email extends CI_Controller {
         redirect('email/send_email');
     }
 
-    public function send_email() {
-        $config['protocol'] = 'sendmail';
-        $config['mailpath'] = '/usr/sbin/sendmail';
-        $config['charset'] = 'iso-8859-1';
-        $config['wordwrap'] = TRUE;
-        $config['mailtype'] = 'html';
-
-        $this->email->initialize($config);
-
-        $this->email->from('from@domain.com', 'Your Name');
-        $this->email->to('to@domain.com');
-
-        $this->email->subject('This is a html email');
-        $html = 'This is an <b>HTML</b> email';
-        $this->email->message($html);
-
-        $this->email->send();
-
-        echo $this->email->print_debugger();
-    }
+    public function sendEmail(){			
+		// Email configuration
+		$config = Array(
+			  'protocol' => 'smtp',
+			  'smtp_host' => 'smtp.yourdomainname.com.',
+			  'smtp_port' => 465,
+			  'smtp_user' => 'marvingiffordoclima@gmail.com', // change it to yours
+			  'smtp_pass' => 'mgoc52393xirxaux', // change it to yours
+			  'mailtype' => 'html',
+			  'charset' => 'iso-8859-1',
+			  'wordwrap' => TRUE
+		);	
+	
+		$this->load->library('email', $config);
+		$this->email->from('marvingiffordoclima@gmail.com', "Admin Team");
+		$this->email->to("marvinjsow@gmail.com");
+		$this->email->cc("marvin@justsimplyoutsourcing.com");
+		$this->email->subject("This is test subject line");
+		$this->email->message("Mail sent test message...");
+			
+		$data['message'] = "Sorry Unable to send email...";	
+		if($this->email->send()){					
+			$data['message'] = "Mail sent...";			
+		}	
+		 				
+		// forward to index page
+		//$this->load->view('index', $data);		
+	}
 }
